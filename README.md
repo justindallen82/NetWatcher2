@@ -9,6 +9,7 @@ Features:
 - Set a custom ip list.
 - Set the check rate.
 - Option to enable logging to a file.
+THIS IS A TEST BRANCH TO ADD A SPEED LIMIT OPTION
 
 
 Usage
