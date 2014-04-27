@@ -49,6 +49,7 @@ import os.path
 
 DEFAULT_PREFS = {
     "ip_addresses": [],
+    "download_rate": 125,
     "check_rate": 5,   # minutes
     "custom_log": False,
     "log_dir": os.path.expanduser('~'),
@@ -60,7 +61,7 @@ import logging
 logger = logging.getLogger("NetWatcher")
 logger.parent = 0
 logger.setLevel(logging.INFO)
-
+checked = []
 
 class Core(CorePluginBase):
 
@@ -96,22 +97,25 @@ class Core(CorePluginBase):
     def regulate_torrents(scan_result):
         """Resume/Pause all torrents if `scan_result` is 'Free'/'Busy'."""
         for torrent in component.get("Core").torrentmanager.torrents.values():
-            status = torrent.get_status([])     # empty keys -> full status
-            if scan_result == 'Busy' and status['state'] != 'Paused':
-                msg = ("Pausing '{status[name]}' from state: {status[state]}"
+               # empty keys -> full status
+            if scan_result == 'Busy' and checked == 0:
+                limit = (self.config["download_rate"]/ 1024.0)
+                msg = ("limiting speed"
                       .format(status=status))
                 log.info(msg)
                 logger.info(msg)
+                torrent.set_max_download_speed(limit)
+                checked = 1
+                
 
-                torrent.pause()
-
-            elif scan_result == 'Free' and status['state'] == 'Paused':
+            elif scan_result == 'Free' and checked == 1:
+                limit = -1
                 msg = ("Resuming '{status[name]}' from state: {status[state]}"
                       .format(status=status))
                 log.info(msg)
                 logger.info(msg)
-
-                torrent.resume()
+                torrent.set_max_download_speed(limit)
+                checked = 0
 
     def do_schedule(self, timer=True):
         """Schedule of network scan and subsequent torrent regulation."""
