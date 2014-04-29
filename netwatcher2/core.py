@@ -111,7 +111,11 @@ class Core(CorePluginBase):
             elif scan_result == 'Free':
                 limit = -1
                 torrent.set_max_download_speed(limit)
+        if scan_result == 'Busy':
+            logger.info('## Speed Limit Activated ##')                
 
+        elif scan_result == 'Free':
+            logger.info('## Speed Limit DeActivated ##')
     def do_schedule(self, timer=True):
         """Schedule of network scan and subsequent torrent regulation."""
         d = self._quick_scan()
