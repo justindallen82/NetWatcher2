@@ -1,12 +1,14 @@
 #
 # setup.py
 #
-# Copyright (C) 2009 Riccardo Poggi <rik.poggi@gmail.com>
-#
+# NetWatcher .01 Copyright (C) 2009 Riccardo Poggi <rik.poggi@gmail.com>
+# NetWatcher2 Copyright (C) 2014 Cole Morgen <morgenman@gmail.com
+# 
 # Basic plugin template created by:
 # Copyright (C) 2008 Martijn Voncken <mvoncken@gmail.com>
 # Copyright (C) 2007-2009 Andrew Resch <andrewresch@gmail.com>
 # Copyright (C) 2009 Damien Churchill <damoxc@gmail.com>
+# Copyright (C) 2014 Cole Morgen <morgenman@gmail.com>
 #
 # Deluge is free software.
 #
@@ -39,10 +41,10 @@
 
 from setuptools import setup
 
-__plugin_name__ = "NetWatcher"
-__author__ = "Riccardo Poggi"
-__author_email__ = "rik.poggi@gmail.com"
-__version__ = "0.1"
+__plugin_name__ = "NetWatcher2"
+__author__ = "Cole Morgen"
+__author_email__ = "morgenman@gmail.com"
+__version__ = "0.2"
 __url__ = ""
 __license__ = "GPLv3"
 __description__ = ""
