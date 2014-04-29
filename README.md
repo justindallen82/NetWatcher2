@@ -1,13 +1,14 @@
 =================
-Deluge NetWatcher
+Deluge NetWatcher2
 =================
 
-_NetWatcher_ is a plugin for the [Deluge bittorrent client](http://deluge-torrent.org/) that pause/resume all torrents if there is someone connected to the same network.
+_NetWatcher2_ is a plugin for the [Deluge bittorrent client](http://deluge-torrent.org/) that reduces the download speed of torrents to a set value if there is someone connected to the same network.
 
 Features:
 
 - Set a custom ip list.
 - Set the check rate.
+- Set the download rate.
 - Option to enable logging to a file.
 THIS IS A TEST BRANCH TO ADD A SPEED LIMIT OPTION
 
@@ -28,9 +29,9 @@ Working rationale as follow:
 
 ### Custom logging
 
-It's also possibile to log the NetWatcher activity into a file.
+It's also possibile to log the NetWatcher2 activity into a file.
 
-Other than knowing what happend when we weren't at the computer, the use of this feature combined with a Dropbox-like service makes it very easy to monitor torrents status without having to access the web-interface.  
+Other than knowing what happened when we weren't at the computer, the use of this feature combined with a Dropbox-like service makes it very easy to monitor torrents status without having to access the web-interface.  
 To support this combined usage the log extension is `.txt`.
 
 
@@ -39,9 +40,9 @@ Install the plugin
 
 There are various ways to do it:
 
-1. Download the egg from [here](https://github.com/rikpg/NetWatcher/downloads) and follow one of [these instructions](http://dev.deluge-torrent.org/wiki/Plugins#InstallingPlugins).
+1. Download the egg from [here](https://github.com/morgenman/NetWatcher2/downloads) and follow one of [these instructions](http://dev.deluge-torrent.org/wiki/Plugins#InstallingPlugins).
 
-2. Or download the source code (available [here](https://github.com/rikpg/NetWatcher)), build the egg and then copy it in the deluge _plugins_ directory:
+2. Or download the source code (available [here](https://github.com/morgenman/NetWatcher2)), build the egg and then copy it in the deluge _plugins_ directory:
 
         $ python setup.py bdist_egg
         $ cp dist/*.egg ~/.config/deluge/plugins

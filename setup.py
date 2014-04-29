@@ -40,7 +40,7 @@
 from setuptools import setup
 
 __plugin_name__ = "NetWatcher2"
-__author__ = "Cole Morgen (original from Riccardo Poggi)"
+__author__ = "Cole Morgen (originally from Riccardo Poggi)"
 __author_email__ = "morgenman@gmail.com"
 __version__ = "0.2"
 __url__ = ""
