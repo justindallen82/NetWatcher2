@@ -4,13 +4,14 @@ Deluge NetWatcher2
 
 _NetWatcher2_ is a plugin for the [Deluge bittorrent client](http://deluge-torrent.org/) that reduces the download speed of torrents to a set value if there is someone connected to the same network.
 
+This is an fork of rikpg's NetWatcher plugin
+
 Features:
 
 - Set a custom ip list.
 - Set the check rate.
 - Set the download rate.
 - Option to enable logging to a file.
-THIS IS A TEST BRANCH TO ADD A SPEED LIMIT OPTION
 
 
 Usage
