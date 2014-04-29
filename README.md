@@ -2,14 +2,16 @@
 Deluge NetWatcher
 =================
 
-_NetWatcher_ is a plugin for the [Deluge bittorrent client](http://deluge-torrent.org/) that pause/resume all torrents if there is someone connected to the same network.
+_NetWatcher2_ is a plugin for the [Deluge bittorrent client](http://deluge-torrent.org/) that pause/resume all torrents if there is someone connected to the same network.
+
+It is a fork of NetWatcher which limits the speed of torrents when certain IPs are active.
 
 Features:
 
 - Set a custom ip list.
 - Set the check rate.
+- Set the download rate when ip is active.
 - Option to enable logging to a file.
-THIS IS A TEST BRANCH TO ADD A SPEED LIMIT OPTION
 
 
 Usage
@@ -39,9 +41,9 @@ Install the plugin
 
 There are various ways to do it:
 
-1. Download the egg from [here](https://github.com/rikpg/NetWatcher/downloads) and follow one of [these instructions](http://dev.deluge-torrent.org/wiki/Plugins#InstallingPlugins).
+1. Download the egg from [here](https://github.com/morgenman/NetWatcher2/downloads) and follow one of [these instructions](http://dev.deluge-torrent.org/wiki/Plugins#InstallingPlugins).
 
-2. Or download the source code (available [here](https://github.com/rikpg/NetWatcher)), build the egg and then copy it in the deluge _plugins_ directory:
+2. Or download the source code (available [here](https://github.com/morgenman/NetWatcher2)), build the egg and then copy it in the deluge _plugins_ directory:
 
         $ python setup.py bdist_egg
         $ cp dist/*.egg ~/.config/deluge/plugins
