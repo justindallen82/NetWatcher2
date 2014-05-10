@@ -65,7 +65,7 @@ config = deluge.configmanager.ConfigManager("netwatcher2.conf",
                                                          DEFAULT_PREFS)
 dlspeed = config["download_rate"]
 
-
+result = []
 
 class Core(CorePluginBase):
 
@@ -87,8 +87,9 @@ class Core(CorePluginBase):
         else:
             logger.addHandler(logging.NullHandler())
 
-        logger.info('## Starting New Session ##')
-
+        logger.info('\n \n## Starting New Session ##')
+        
+        result = 1
         self.do_schedule()
 
     def disable(self):
@@ -101,21 +102,22 @@ class Core(CorePluginBase):
     def regulate_torrents(scan_result):
         """Resume/Pause all torrents if `scan_result` is 'Free'/'Busy'."""
         logger.info('## Updating ##')
+        global result
         for torrent in component.get("Core").torrentmanager.torrents.values():
                # empty keys -> full status
-            if scan_result == 'Busy':
+            if scan_result == 'Busy' and torrent.options["auto_managed"]:
                 limit = (dlspeed)
                 torrent.set_max_download_speed(limit)
-                
 
-            elif scan_result == 'Free':
+            elif scan_result == 'Free' and torrent.options["auto_managed"]:
                 limit = -1
                 torrent.set_max_download_speed(limit)
-        if scan_result == 'Busy':
+        if scan_result == 'Busy' and result==0:
             logger.info('## Speed Limit Activated ##')                
-
-        elif scan_result == 'Free':
+            result = 1
+        elif scan_result == 'Free' and result==1:
             logger.info('## Speed Limit DeActivated ##')
+            result = 0
     def do_schedule(self, timer=True):
         """Schedule of network scan and subsequent torrent regulation."""
         d = self._quick_scan()
@@ -146,6 +148,7 @@ class Core(CorePluginBase):
         d.addCallback(lambda x: 'Free' if all(x) else 'Busy')
         
         return d
+        
 
     @export
     def set_config(self, config):
@@ -157,7 +160,6 @@ class Core(CorePluginBase):
         self.timer.cancel()
         self.do_schedule()
         logger.info('## Setting Config ##')
-
         self.update()
 
     @export
